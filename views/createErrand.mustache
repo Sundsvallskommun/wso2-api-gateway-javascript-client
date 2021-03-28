@@ -1,0 +1,82 @@
+<html>
+ <head>
+  <link rel="stylesheet"
+ href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+ crossorigin="anonymous">
+ <style>
+  .categoryButton {
+    margin-bottom: 2vh;
+    margin-right: 0.6vw;
+  }
+ </style>
+  </head>
+  <body>
+    <div class="container" style="padding:20px">
+     <div class="card card-body bg-light">    
+      <h1>{{pageTitle}}</h1>
+     </div>
+     <div>
+     <br />
+     <form action="/submitErrand" method="post" enctype="multipart/form-data">
+      <input type="hidden" id="chosenCategory" name="chosenCategory" value="empty" />
+      <div class="form-group">
+      <label>Välj kategori:</label>
+      <br />
+        {{#categories}}
+          <button class="btn btn-primary categoryButton" type="button" value={{CATEGORY_ID}}>{{category}}</button>
+        {{/categories}}
+      </div>
+      <div class="form-group">
+        <label for="descriptionTextarea">Beskriv ärendet:</label>
+        <textarea class="form-control" id="descriptionTextarea" name="descriptionTextarea" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="mapCoordinates">Kartkoordinater:</label>
+        <input type="text" class="form-control" id="mapCoordinates" name="mapCoordinates" placeholder="ex: 68.9664824,33.1189967" />
+      </div>
+      <div class="form-group">
+        <label for="incidentImage">Bifoga en bild med ditt ärende</label>
+        <input type="file" class="form-control-file" id="incidentImage" name="incidentImage" accept="image/jpeg,image/png" />
+      </div>
+      <br />
+      <h4 class="mb-3">Kontaktuppgifter</h4>
+      <div class="form-group">
+        <label for="inputEmail">E-postadress:</label>
+        <input type="email" class="form-control" id="inputEmail" name="inputEmail" aria-describedby="emailHelp" placeholder="ex: ziggy@startdust.se" />
+        <small id="emailHelp" class="form-text text-muted">Vi delar aldrig din e-post med någon annan</small>
+      </div>
+      <div class="form-group">
+        <label for="inputPhone">Telefonnummer:</label>
+        <input type="text" class="form-control" id="inputPhone" name="inputPhone" aria-describedby="phoneHelp" placeholder="ex: 070123456789" />
+        <small id="phoneHelp" class="form-text text-muted">Vi delar aldrig ditt telefonnummer med någon annan</small>
+      </div>
+      <div class="form-group">
+        <label for="contactMethodSelect">Föredragen kontaktmetod</label>
+        <select class="form-control" id="contactMethodSelect" name="contactMethodSelect">
+          <option value="email">E-post</option>
+          <option value="phone">Telefon</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Skicka ärende</button>
+     </form>      
+    </div>
+  </div>
+ </body>
+ <script>
+  var categoryButtons = document.getElementsByClassName('categoryButton');
+  var chosenCategory = document.getElementById('chosenCategory');
+
+  for (var i=0;i<categoryButtons.length;i++) {
+    categoryButtons[i].addEventListener('click', function(e) {
+        chosenCategory.value = e.target.value;
+        for (var x=0;x<categoryButtons.length;x++) {
+          console.log("Hej");
+          categoryButtons[x].classList.remove('btn-success');
+          categoryButtons[x].classList.add('btn-primary');
+        }
+        e.target.classList.remove('btn-primary');
+        e.target.classList.add('btn-success');
+    }
+  )}
+ </script>
+</html>
