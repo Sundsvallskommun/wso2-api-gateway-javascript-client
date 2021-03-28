@@ -54,10 +54,10 @@ Token används sedan för att göra anrop mot Sundsvall kommuns API-gateway, den
 
 För att skapa en klient utan GUI behövs endast koden i filerna: 
 
-_server.js_ 
-_simpleStorage.js_
-_APIFunctions.js_
-_package-lock.json_
+_server.js_  
+_simpleStorage.js_  
+_APIFunctions.js_  
+_package-lock.json_  
 _package.json_ (efter ``npm install`` bör paket som inte används tas bort med ``npm remove``)
 
 Endast paketet [node-fetch](https://www.npmjs.com/package/node-fetch) behövs (eller annan metod för att konsumera API:er).
