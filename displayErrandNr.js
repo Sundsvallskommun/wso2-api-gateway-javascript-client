@@ -1,5 +1,5 @@
-let router = require('express').Router();
-let simpleStorage = require('./simpleStorage');
+const router = require('express').Router();
+const simpleStorage = require('./simpleStorage');
 
 router.get('/displayErrandNr', async(req, res) => {
 
